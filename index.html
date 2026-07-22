@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zelal Hoca | Matematik Özel Ders</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome İkonları -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background-color: #fdf2f8;
+            /* Sembollerin görünürlüğü artırıldı (opacity: 0.08) */
+            background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23be185d' fill-opacity='0.08' font-family='sans-serif' font-size='24' font-weight='bold'%3E%3Ctext x='20' y='40'%3E%CF%80%3C/text%3E%3Ctext x='130' y='70'%3E%E2%88%AB%3C/text%3E%3Ctext x='70' y='130'%3E%E2%88%91%3C/text%3E%3Ctext x='160' y='160'%3E%E2%88%9E%3C/text%3E%3Ctext x='30' y='180'%3E%E2%88%9A%3C/text%3E%3Ctext x='90' y='30'%3E%C2%B1%3C/text%3E%3Ctext x='170' y='110'%3E%C3%B7%3C/text%3E%3Ctext x='100' y='190'%3E%E2%89%88%3C/text%3E%3Ctext x='10' y='100'%3E%CE%94%3C/text%3E%3C/g%3E%3C/svg%3E");
+            /* Yavaş hareket eden arka plan animasyonu eklendi */
+            animation: moveBackground 25s linear infinite;
+        }
+
+        @keyframes moveBackground {
+            0% { background-position: 0 0; }
+            100% { background-position: -200px -200px; }
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased">
+
+    <!-- Navigasyon -->
+    <nav class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50 transition-all">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold text-rose-700 tracking-tight">
+                Matematik Hocam <span class="text-pink-500">Zelal</span>
+            </a>
+            <div class="hidden md:flex space-x-6 font-medium text-slate-600 text-sm">
+                <a href="#hakkimda" class="hover:text-rose-600 transition">Hakkında</a>
+                <a href="#dersler" class="hover:text-rose-600 transition">Ders İçerikleri</a>
+                <a href="#metot" class="hover:text-rose-600 transition">Çalışma Sistemi</a>
+            </div>
+            <a href="https://ig.me/m/matematikhocamzelal" target="_blank" class="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 hover:opacity-90 text-white text-sm font-semibold px-4 py-2 rounded-full transition shadow-sm flex items-center gap-2">
+                <i class="fa-brands fa-instagram text-lg"></i>
+                <span>Mesaj Gönder</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Bölümü -->
+    <section class="pt-32 pb-20 px-4 max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12 relative z-10">
+        <div class="md:w-1/2 space-y-6 text-center md:text-left">
+            <span class="bg-pink-100 text-rose-700 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm border border-pink-200">
+                Yeni Nesil Matematik Eğitimi
+            </span>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight">
+                Matematikte Başarıya <span class="text-rose-600">Birlikte</span> Ulaşalım
+            </h1>
+            <p class="text-slate-600 text-lg leading-relaxed">
+                Ezberci sistemden uzak, mantığını kavratan ve yeni nesil sorulara yönelik kişiselleştirilmiş matematik dersleri.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-2">
+                <a href="https://ig.me/m/matematikhocamzelal" target="_blank" class="bg-rose-500 hover:bg-rose-600 text-white font-medium px-6 py-3 rounded-xl transition shadow-lg shadow-pink-200 text-center">
+                    Ön Görüşme Planla
+                </a>
+                <a href="#dersler" class="bg-white/80 backdrop-blur-sm border border-rose-300 hover:border-rose-500 hover:text-rose-600 font-medium px-6 py-3 rounded-xl transition text-center">
+                    Programları İncele
+                </a>
+            </div>
+        </div>
+        <div class="md:w-1/2 flex justify-center relative">
+            <div class="relative w-72 h-72 md:w-96 md:h-96 rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-white">
+                <img src="profil.jpg" alt="Zelal Hoca Profil" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </section>
+
+    <!-- Hakkında Bölümü -->
+    <section id="hakkimda" class="py-20 px-6 max-w-7xl mx-auto relative z-10">
+        <div class="text-center mb-10">
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Zelal Hoca <span class="text-rose-600">Kimdir?</span></h2>
+            <div class="w-20 h-1.5 bg-rose-400 mx-auto mt-4 rounded-full"></div>
+        </div>
+        <div class="max-w-3xl mx-auto text-center text-slate-700 text-lg md:text-xl leading-relaxed font-medium space-y-6">
+            <p>
+                Çocukluk yıllarımdan bu yana matematiğe duyduğum büyük tutkuyu, şimdi öğrencilerimle paylaşıyorum. Matematik bölümü öğrencisi olarak akademik eğitimime devam ederken, son 1 yıldır ilkokul ve ortaokul düzeyindeki öğrencilerime özel dersler vererek onların başarılarına ortak oluyorum.
+            </p>
+            <p>
+                Amacım matematiği korkulan bir ders olmaktan çıkarıp, anlaşılan ve sevilen bir alan haline getirmektir. Birebir ilgi, modern eğitim yaklaşımları ve samimi bir iletişimle her öğrencinin potansiyelini en üst düzeye çıkarmayı hedefliyorum.
+            </p>
+        </div>
+    </section>
+
+    <!-- Ders İçerikleri Bölümü -->
+    <section id="dersler" class="py-20 px-6 bg-white relative z-10 shadow-sm border-y border-pink-100">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Ders <span class="text-rose-600">İçerikleri</span></h2>
+                <div class="w-20 h-1.5 bg-rose-400 mx-auto mt-4 rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- LGS ve Bursluluk -->
+                <div class="bg-pink-50/50 p-8 rounded-2xl hover:bg-pink-50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-pink-100 flex items-start gap-6">
+                    <div class="w-14 h-14 shrink-0 bg-rose-500 text-white rounded-xl flex items-center justify-center text-2xl shadow-md">
+                        <i class="fa-solid fa-medal"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">LGS ve Bursluluk Hazırlık</h3>
+                        <p class="text-slate-600 leading-relaxed">Yeni nesil soru tiplerine alışma, mantık-muhakeme yeteneğini geliştirme ve sınav stratejileri üzerine yoğunlaştırılmış çalışmalar.</p>
+                    </div>
+                </div>
+                <!-- Okula Takviye -->
+                <div class="bg-pink-50/50 p-8 rounded-2xl hover:bg-pink-50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-pink-100 flex items-start gap-6">
+                    <div class="w-14 h-14 shrink-0 bg-rose-500 text-white rounded-xl flex items-center justify-center text-2xl shadow-md">
+                        <i class="fa-solid fa-school"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">İlkokul & Ortaokul Takviye</h3>
+                        <p class="text-slate-600 leading-relaxed">Okul müfredatına tam uyumlu, yazılı sınavlara hazırlık ve temel matematik altyapısını sağlamlaştıran birebir dersler.</p>
+                    </div>
+                </div>
+                <!-- Eğitim Modeli -->
+                <div class="bg-pink-50/50 p-8 rounded-2xl hover:bg-pink-50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-pink-100 flex items-start gap-6">
+                    <div class="w-14 h-14 shrink-0 bg-rose-500 text-white rounded-xl flex items-center justify-center text-2xl shadow-md">
+                        <i class="fa-solid fa-laptop-house"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Online & Yüz Yüze Eğitim</h3>
+                        <p class="text-slate-600 leading-relaxed">Öğrencinin ve ailenin tercihine göre, interaktif materyallerle desteklenmiş online veya birebir yüz yüze ders imkanı.</p>
+                    </div>
+                </div>
+                <!-- Video Çözüm -->
+                <div class="bg-pink-50/50 p-8 rounded-2xl hover:bg-pink-50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-pink-100 flex items-start gap-6">
+                    <div class="w-14 h-14 shrink-0 bg-rose-500 text-white rounded-xl flex items-center justify-center text-2xl shadow-md">
+                        <i class="fa-solid fa-video"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Videolu Soru Çözümleri</h3>
+                        <p class="text-slate-600 leading-relaxed">Öğrencilerin takıldığı sorularda ders saatini beklemeden, anlaşılır ve detaylı videolu soru çözüm desteği.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Çalışma Sistemi Bölümü -->
+    <section id="metot" class="py-20 px-6 max-w-7xl mx-auto relative z-10">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900">Çalışma <span class="text-rose-600">Sistemi</span></h2>
+            <div class="w-20 h-1.5 bg-rose-400 mx-auto mt-4 rounded-full"></div>
+        </div>
+        <div class="flex flex-col md:flex-row justify-center items-stretch gap-8 md:gap-12 relative">
+            <!-- Adım 1 -->
+            <div class="flex-1 text-center z-10 bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-pink-100 shadow-sm flex flex-col items-center">
+                <div class="w-16 h-16 bg-white border-4 border-rose-500 text-rose-600 rounded-full flex items-center justify-center text-2xl font-bold mb-4 shadow-md">1</div>
+                <h4 class="font-bold text-lg text-slate-900 mb-2">Seviye Tespiti & Planlama</h4>
+                <p class="text-sm text-slate-600">Öğrencinin matematik altyapısını analiz ederek, hedefe ve ihtiyaca yönelik en uygun ders programını (online/yüz yüze) oluşturma.</p>
+            </div>
+            <!-- Adım 2 -->
+            <div class="flex-1 text-center z-10 bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-pink-100 shadow-sm flex flex-col items-center">
+                <div class="w-16 h-16 bg-white border-4 border-rose-500 text-rose-600 rounded-full flex items-center justify-center text-2xl font-bold mb-4 shadow-md">2</div>
+                <h4 class="font-bold text-lg text-slate-900 mb-2">İnteraktif Ders İşleyişi</h4>
+                <p class="text-sm text-slate-600">Ezberden uzak, mantığı kavratan metotlarla konunun işlenmesi ve yeni nesil soru pratiklerinin yapılması.</p>
+            </div>
+            <!-- Adım 3 -->
+            <div class="flex-1 text-center z-10 bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-pink-100 shadow-sm flex flex-col items-center">
+                <div class="w-16 h-16 bg-white border-4 border-rose-500 text-rose-600 rounded-full flex items-center justify-center text-2xl font-bold mb-4 shadow-md">3</div>
+                <h4 class="font-bold text-lg text-slate-900 mb-2">Video Çözüm & Sıkı Takip</h4>
+                <p class="text-sm text-slate-600">Ders dışı zamanlarda ödevlendirme, yapılamayan sorular için videolu çözüm desteği ve düzenli gelişim takibi.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-10 text-center border-t-4 border-rose-500 mt-10 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            
+            <div class="text-xl font-bold text-white tracking-tight">
+                Matematik Hocam <span class="text-rose-500">Zelal</span>
+            </div>
+            
+            <div class="text-sm space-y-1">
+                <p>&copy; 2026 Tüm hakları saklıdır.</p>
+                <p class="text-xs text-slate-500">
+                    <i class="fa-solid fa-star text-rose-500 text-[10px] mr-1"></i>
+                    powered by <span class="text-slate-300 font-medium tracking-wide">Yıldız Web Studio</span>
+                </p>
+            </div>
+            
+            <div class="flex gap-4">
+                <a href="https://ig.me/m/matematikhocamzelal" target="_blank" class="w-10 h-10 bg-slate-800 hover:bg-rose-500 text-white rounded-full flex items-center justify-center transition-colors shadow-lg">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+            </div>
+
+        </div>
+    </footer>
+</body>
+</html>
