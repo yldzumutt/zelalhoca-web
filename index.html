@@ -205,6 +205,12 @@
                             <option value="LGS Hazırlık">LGS Hazırlık</option>
                             <option value="Diğer">Diğer</option>
                         </select>
+                        
+                        <!-- Detay Alanı (Başlangıçta Gizli) -->
+                        <div id="detayAlani" class="hidden mt-4">
+                            <label for="detay" class="block text-sm font-medium text-slate-700 mb-1">Lütfen Kısaca Belirtin</label>
+                            <textarea id="detay" name="detay" rows="2" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-rose-500 focus:border-rose-500 bg-white" placeholder="Talebinizi buraya yazabilirsiniz..."></textarea>
+                        </div>
                     </div>
 
                     <!-- KVKK Onayı -->
@@ -264,6 +270,23 @@
         const form = document.forms['google-sheet-form'];
         const submitBtn = document.getElementById('submitBtn');
         const basariMesaji = document.getElementById('basariMesaji');
+        
+        // Yeni eklenen alanlar
+        const subjectSelect = document.getElementById('subject');
+        const detayAlani = document.getElementById('detayAlani');
+        const detayInput = document.getElementById('detay');
+
+        // "Diğer" seçilme durumunu kontrol eden olay dinleyicisi
+        subjectSelect.addEventListener('change', (e) => {
+            if (e.target.value === 'Diğer') {
+                detayAlani.classList.remove('hidden');
+                detayInput.required = true;
+            } else {
+                detayAlani.classList.add('hidden');
+                detayInput.required = false;
+                detayInput.value = '';
+            }
+        });
 
         form.addEventListener('submit', e => {
             e.preventDefault(); 
@@ -272,10 +295,23 @@
             submitBtn.disabled = true;
             submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
 
-            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            // Form verilerini yakala
+            const formData = new FormData(form);
+            
+            // Eğer "Diğer" seçildiyse, Konu (subject) bilgisini kullanıcının yazdığı metinle birleştir
+            if (subjectSelect.value === 'Diğer') {
+                formData.set('subject', 'Diğer: ' + detayInput.value);
+            }
+
+            fetch(scriptURL, { method: 'POST', body: formData })
                 .then(response => {
                     basariMesaji.classList.remove('hidden');
                     form.reset();
+                    
+                    // Form sıfırlandıktan sonra detay alanını tekrar gizle
+                    detayAlani.classList.add('hidden');
+                    detayInput.required = false;
+                    
                     submitBtn.innerHTML = 'Gönder';
                     submitBtn.disabled = false;
                     submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
