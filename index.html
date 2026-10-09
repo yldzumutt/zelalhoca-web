@@ -12,13 +12,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts: Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- EmailJS SDK (Yeni Eklenen Bölüm) -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init({
+              publicKey: "AMqOtp42HITpamIJ9",
+            });
+        })();
+    </script>
+
     <style>
         body { 
             font-family: 'Poppins', sans-serif; 
             background-color: #fdf2f8;
-            /* Sembollerin görünürlüğü artırıldı (opacity: 0.08) */
             background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23be185d' fill-opacity='0.08' font-family='sans-serif' font-size='24' font-weight='bold'%3E%3Ctext x='20' y='40'%3E%CF%80%3C/text%3E%3Ctext x='130' y='70'%3E%E2%88%AB%3C/text%3E%3Ctext x='70' y='130'%3E%E2%88%91%3C/text%3E%3Ctext x='160' y='160'%3E%E2%88%9E%3C/text%3E%3Ctext x='30' y='180'%3E%E2%88%9A%3C/text%3E%3Ctext x='90' y='30'%3E%C2%B1%3C/text%3E%3Ctext x='170' y='110'%3E%C3%B7%3C/text%3E%3Ctext x='100' y='190'%3E%E2%89%88%3C/text%3E%3Ctext x='10' y='100'%3E%CE%94%3C/text%3E%3C/g%3E%3C/svg%3E");
-            /* Yavaş hareket eden arka plan animasyonu eklendi */
             animation: moveBackground 25s linear infinite;
         }
 
@@ -232,7 +241,7 @@
                     </div>
                 </form>
                 
-                <!-- Başarı Mesajı (Gizli olarak durur, form gönderilince açılır) -->
+                <!-- Başarı Mesajı -->
                 <div id="basariMesaji" class="hidden mt-6 bg-green-50 text-green-700 p-4 rounded-lg border border-green-200 text-center font-medium">
                     Talebiniz başarıyla alındı. Size en kısa sürede dönüş yapacağız.
                 </div>
@@ -250,10 +259,6 @@
             
             <div class="text-sm space-y-1">
                 <p>&copy; 2026 Tüm hakları saklıdır.</p>
-                <p class="text-xs text-slate-500">
-                    <!-- <i class="fa-solid fa-star text-rose-500 text-[10px] mr-1"></i> -->
-                    <!--powered by <a href="https://instagram.com/yildiztechstudio" target="_blank" class="text-slate-300 font-medium tracking-wide hover:text-rose-500 transition-colors cursor-pointer">Yıldız Web Studio</a> -->
-                </p>
             </div>
             
             <div class="flex gap-4">
@@ -265,19 +270,17 @@
         </div>
     </footer>
 
-    <!-- GÖNDERME İŞLEMİNİ YAPAN JAVASCRIPT KODU -->
+    <!-- GÖNDERME İŞLEMİNİ YAPAN JAVASCRIPT KODU (HEM SHEETS HEM MAİL) -->
     <script>
         const scriptURL = 'https://script.google.com/macros/s/AKfycbymRoSIuLDDShAIrGyexFIKiQ37lzBf3TdF_hkRHw9ZQymYTqeuG8Ly8BOjxLkx-UIg9A/exec';
         const form = document.forms['google-sheet-form'];
         const submitBtn = document.getElementById('submitBtn');
         const basariMesaji = document.getElementById('basariMesaji');
         
-        // Yeni eklenen alanlar
         const subjectSelect = document.getElementById('subject');
         const detayAlani = document.getElementById('detayAlani');
         const detayInput = document.getElementById('detay');
 
-        // "Diğer" seçilme durumunu kontrol eden olay dinleyicisi
         subjectSelect.addEventListener('change', (e) => {
             if (e.target.value === 'Diğer') {
                 detayAlani.classList.remove('hidden');
@@ -296,37 +299,47 @@
             submitBtn.disabled = true;
             submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
 
-            // Form verilerini yakala
+            // 1. Google Sheets için verileri hazırla
             const formData = new FormData(form);
-            
-            // Eğer "Diğer" seçildiyse, Konu (subject) bilgisini kullanıcının yazdığı metinle birleştir
             if (subjectSelect.value === 'Diğer') {
                 formData.set('subject', 'Diğer: ' + detayInput.value);
             }
 
-            fetch(scriptURL, { method: 'POST', body: formData })
-                .then(response => {
-                    basariMesaji.classList.remove('hidden');
-                    form.reset();
-                    
-                    // Form sıfırlandıktan sonra detay alanını tekrar gizle
-                    detayAlani.classList.add('hidden');
-                    detayInput.required = false;
-                    
-                    submitBtn.innerHTML = 'Gönder';
-                    submitBtn.disabled = false;
-                    submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
-                    
-                    setTimeout(() => {
-                        basariMesaji.classList.add('hidden');
-                    }, 5000);
-                })
-                .catch(error => {
-                    alert('Bir hata oluştu. Lütfen bağlantınızı kontrol edip tekrar deneyin.');
-                    submitBtn.innerHTML = 'Gönder';
-                    submitBtn.disabled = false;
-                    submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
-                })
+            // 2. EmailJS Şablonu için verileri hazırla
+            const templateParams = {
+                name: form.name.value,
+                phone: form.phone.value,
+                subject: subjectSelect.value === 'Diğer' ? 'Diğer: ' + detayInput.value : subjectSelect.value,
+                detay: detayInput.value || 'Belirtilmedi'
+            };
+
+            // Her iki servise (Sheets ve EmailJS) aynı anda istek at
+            Promise.all([
+                fetch(scriptURL, { method: 'POST', body: formData }),
+                emailjs.send('service_bslaxng', 'template_rrlkvdi', templateParams)
+            ])
+            .then(() => {
+                basariMesaji.classList.remove('hidden');
+                form.reset();
+                
+                detayAlani.classList.add('hidden');
+                detayInput.required = false;
+                
+                submitBtn.innerHTML = 'Gönder';
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+                
+                setTimeout(() => {
+                    basariMesaji.classList.add('hidden');
+                }, 5000);
+            })
+            .catch(error => {
+                console.error('Gönderim Hatası:', error);
+                alert('Bir hata oluştu. Lütfen bağlantınızı kontrol edip tekrar deneyin.');
+                submitBtn.innerHTML = 'Gönder';
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+            });
         });
     </script>
 </body>
